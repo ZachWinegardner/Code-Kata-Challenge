@@ -17,7 +17,7 @@ public class ItemGeneratorScript : MonoBehaviour {
 	void Start(){
 		SetText (); 
 	}
-
+	
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) { 
 			GameObject NewItem = Instantiate (Item, Item.transform.position, Quaternion.identity) as GameObject; 
@@ -41,6 +41,5 @@ public class ItemGeneratorScript : MonoBehaviour {
 		SText.text = "Strength: " + Strength.ToString (); 
 		HText.text = "Health: " + Health.ToString (); 
 		IText.text = "Intellect: " + Intellect.ToString (); 
-	}
-		
+	}	
 }
