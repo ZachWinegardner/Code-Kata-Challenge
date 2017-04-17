@@ -29,7 +29,6 @@ public class UISetter : MonoBehaviour {
 	public Color RedText;
 	public Color PurpleText;
 
-
 	void SetUIText (){
 
 		Level = ItemAttributes.ItemLevel;
