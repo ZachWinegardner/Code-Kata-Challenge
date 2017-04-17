@@ -53,7 +53,7 @@ public class ItemAttributes : MonoBehaviour {
 		BoostRand = Random.value; 
 		//20% chance of boosting
 		if (BoostRand > (0.8)) {
-			// Booster determines which attr to boost, BoostValue calcs the amount of boost
+			// int Booster determines which attr to boost, BoostValue calcs the amount of boost
 			int Booster = Random.Range (1, 4); 
 			float BoostValue = Random.Range (1, 6) + ItemLevel / 2; 
 
