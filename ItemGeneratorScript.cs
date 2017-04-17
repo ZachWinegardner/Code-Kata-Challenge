@@ -19,6 +19,7 @@ public class ItemGeneratorScript : MonoBehaviour {
 	}
 	
 	void Update () {
+		//On Space, spawn new item and attach the code to initialze its values
 		if (Input.GetKeyDown (KeyCode.Space)) { 
 			GameObject NewItem = Instantiate (Item, Item.transform.position, Quaternion.identity) as GameObject; 
 			NewItem.AddComponent <ItemAttributes>();
