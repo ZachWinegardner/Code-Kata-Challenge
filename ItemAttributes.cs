@@ -36,7 +36,7 @@ public class ItemAttributes : MonoBehaviour {
 		Sellcost = (BuyCost * Random.Range (2, 6)) / 10f; 
 		DamagePerSec = Random.value / AttackSpeed; 
 
-		//Set Color of Item Sprite----------------------------------------
+		//Set Color of Item Sprite------------------------------
 		SpriteRenderer SR = GetComponent<SpriteRenderer>(); 
 		SR.enabled = true; 
 		Vector4 ClassColor;
@@ -46,12 +46,10 @@ public class ItemAttributes : MonoBehaviour {
 			ClassColor = new Vector4 (1f, 0f, 0f, 1f);
 		SR.color = ClassColor; 
 
-
 		//Determine Attr Boost-----------------------------------
-		// calculates chances, calcs boost to random attr, sets index to send to naming array function
-		//BoostResultName is an int varaible that refers to the index of the naming array that will be set in the ModNames function
-		// each value corresponds to "of Strength" , "of Health" ect, in the attr mod names array
-	
+		// Calculates chances, calcs boost to random attr, sets index to send to naming array function
+		// BoostResultName is an int varaible that refers to the index of the naming array that will be set in the ModNames function
+		// Each value corresponds to "of Strength" , "of Health" ect, in the attr mod names array
 		BoostRand = Random.value; 
 		//20% chance of boosting
 		if (BoostRand > (0.8)) {
@@ -80,8 +78,7 @@ public class ItemAttributes : MonoBehaviour {
 			HBoost = 0f; 
 			IBoost = 0f; 
 		}
-
-	
+		
 		//Basic Names Array--------------------------------------------------------------
 		// int variable picks random 0-3 index and is used in the "Identify Type" block that names each type of item
 		int index = Random.Range (0, 4); 
@@ -91,15 +88,14 @@ public class ItemAttributes : MonoBehaviour {
 		string[] MeleeNames = {"Cutlass", "Rolled up Newspaper", "Mace", "Lead Pipe" };
 		string[] RangeNames = {"Crossbow", "Slingshot", "Rubberband Gun", "Javelin" };
 		string[] MagicNames = {"Elder Wand", "Totem", "Casting Glove", "Staff" };
-
-
+		
 		// Identify Type------------------------
 		// checks whay the type is, then sets the name by looking at the propper array and then the random index
 		if (TypeofItem == 1) {
 			this.name = HeadNames[index]; 
 			SendMessage ("SetTypeUI", 1); 
 		}
-
+		
 		if (TypeofItem == 2) {
 			this.name = ChestNames[index];
 			SendMessage ("SetTypeUI", 2);
@@ -124,9 +120,7 @@ public class ItemAttributes : MonoBehaviour {
 			this.name = MagicNames[index];
 			SendMessage ("SetTypeUI", 6);
 		}
-
-	
-
+		
 		// Name Level Mods ------------------------------------------
 		//Checks level status and sends index to naming array function along with previously determined Boost outcome
 		if (ItemLevel <= 3)
@@ -147,7 +141,6 @@ public class ItemAttributes : MonoBehaviour {
 		if (ItemLevel == 10)
 			ModLevelName (4, BoostResultName);
 
-
 		//Let the Generator script know to start destroying the previous object
 		ItemGeneratorScript.FirstGen = true; 
 		gameObject.tag = "LatestSpawned";
@@ -155,10 +148,8 @@ public class ItemAttributes : MonoBehaviour {
 		SendMessage ("SetUIText");
 	}
 
-
-
 	void Update () {
-		//Strike , Check Hit -------------------------------------------------------
+		//Strike , Check Hit --------------------------------
 		if (Input.GetKeyDown (KeyCode.F) && TypeofItem >=4) {
 			//Choose rand 0 to 1
 			ChanceRand = Random.value; 
@@ -172,8 +163,6 @@ public class ItemAttributes : MonoBehaviour {
 		}
 	}
 
-
-
 	void ModLevelName (int index1, int index2){
 		
 		//Mod Names Array
@@ -183,7 +172,6 @@ public class ItemAttributes : MonoBehaviour {
 		this.name = ModNames[index1] + this.name + BoostNames[index2];  
 	}
 
-
 	//Flashes Hit or Miss when F is pressed and the Chance to hit is evaluated
 	IEnumerator FlashHit (bool Hit){
 		if (Hit == true) {
@@ -192,7 +180,6 @@ public class ItemAttributes : MonoBehaviour {
 			yield return new WaitForSeconds (0.3f); 
 			HitText.enabled = false; 
 		}
-
 		else {
 			Text MissText = GameObject.Find ("MissText").GetComponent<Text> (); 
 			MissText.enabled = true; 
@@ -200,8 +187,5 @@ public class ItemAttributes : MonoBehaviour {
 			MissText.enabled = false; 
 		}
 		yield return null; 
-	}
-
-
-		
+	}	
 }
